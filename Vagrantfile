@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
 	# Mongod port mapping is set to 27050 for host to avoid conflict with any existing mongod daemon on host machine
 	config.vm.network :forwarded_port, guest: 27017, host: 27050, auto_correct: true
 	
-	config.vm.synced_folder "./", "/vagrant", create: true, group: "www-data", owner: "www-data"
+	config.vm.synced_folder "./", "/vagrant", create: true, id: "vagrant-root", group: "www-data", owner: "www-data", mount_options: ["dmode=775,fmode=664"]
 	
 	config.vm.provider "virtualbox" do|v|
 		v.name = "MEAN_stack_vagrant"
